@@ -1,256 +1,66 @@
 /**
- * GONTOBBO - Main Application Logic
- * Handles filtering, UI interactions, and booking simulations.
+ * Gontobbo | Destination Database
+ * A comprehensive collection of 55 iconic locations in Bangladesh.
  */
 
-document.addEventListener('DOMContentLoaded', () => {
-    // --- State Management ---
-    let activeCategory = 'All';
-    let searchQuery = '';
-    let maxPrice = 20000;
-    let wishlist = JSON.parse(localStorage.getItem('gontobbo_wishlist')) || [];
+const destinations = [
+    { id: 1, name: "Sajek Valley", district: "Rangamati", category: "Hills", rating: 4.9, price: 4500, highlights: ["Kanglak Para", "Clouds", "Sunrise"], image: "https://images.unsplash.com/photo-1623055812970-1f91b402860d?w=600", description: "Known as the 'Roof of Rangamati,' Sajek is a valley of clouds. Perched 1,800 feet above sea level, it offers a surreal view of the rolling Mizoram hills and traditional tribal lifestyle." },
+    { id: 2, name: "Cox's Bazar", district: "Cox's Bazar", category: "Coastal", rating: 4.8, price: 5000, highlights: ["Marine Drive", "Inani", "Surfing"], image: "https://images.unsplash.com/photo-1590001158193-7ae8a33637e9?w=600", description: "Boasting the world's longest natural sandy sea beach, Cox's Bazar is the tourism capital of Bangladesh, famous for its vibrant sunsets and the scenic Marine Drive road." },
+    { id: 3, name: "Sundarbans", district: "Khulna", category: "Nature", rating: 4.7, price: 12000, highlights: ["Tigers", "Mangrove", "Boating"], image: "https://images.unsplash.com/photo-1621863587424-633b47e53f16?w=600", description: "The largest mangrove forest on earth and a UNESCO World Heritage site. It is a mystical land of tides, home to the majestic Royal Bengal Tiger and diverse wildlife." },
+    { id: 4, name: "Saint Martin", district: "Cox's Bazar", category: "Coastal", rating: 4.9, price: 7000, highlights: ["Coral", "Crystal Water", "Fish"], image: "https://images.unsplash.com/photo-1589982841216-2e81650ad3f0?w=600", description: "The only coral island in Bangladesh. With its crystal clear blue water, coconut groves, and fresh seafood, it is a tropical paradise in the Bay of Bengal." },
+    { id: 5, name: "Sreemangal", district: "Moulvibazar", category: "Nature", rating: 4.8, price: 3500, highlights: ["Tea Gardens", "Lawachara", "7-Layer Tea"], image: "https://images.unsplash.com/photo-1596402184320-417d7178b2cd?w=600", description: "The 'Tea Capital' of Bangladesh. Sreemangal features an endless carpet of green tea gardens, rainforests, and the world-famous multi-layered tea." },
+    { id: 6, name: "Tanguar Haor", district: "Sunamganj", category: "Nature", rating: 4.8, price: 4000, highlights: ["Houseboat", "Water", "Watchtower"], image: "https://images.unsplash.com/photo-1624314138470-5a2f24623f10?w=600", description: "A vast freshwater wetland ecosystem. Living on a luxury houseboat while exploring swamp forests and crystal clear water is a premier monsoon adventure." },
+    { id: 7, name: "Bichanakandi", district: "Sylhet", category: "Nature", rating: 4.7, price: 2500, highlights: ["Stone", "Clear Water", "Hills"], image: "https://images.unsplash.com/photo-1585938389612-a552a28d6914?w=600", description: "Where layers of the Khasi mountains meet. It's a stone collection area where cold mountain streams flow into the river, creating a stunning natural landscape." },
+    { id: 8, name: "Nilgiri", district: "Bandarban", category: "Hills", rating: 4.9, price: 4500, highlights: ["Height", "Clouds", "Resort"], image: "https://images.unsplash.com/photo-1623253549925-542e75e9f85c?w=600", description: "The highest hill resort in Bangladesh. Operated by the Bangladesh Army, it offers breathtaking views of the horizon above the cloud line." },
+    { id: 9, name: "Ratargul Forest", district: "Sylhet", category: "Nature", rating: 4.6, price: 2000, highlights: ["Swamp", "Boating", "Green"], image: "https://images.unsplash.com/photo-1624314138470-5a2f24623f10?w=600", description: "Known as the Amazon of Bangladesh. It is one of the few freshwater swamp forests in the world, perfect for peaceful monsoon boat rides through submerged trees." },
+    { id: 10, name: "Paharpur Vihara", district: "Naogaon", category: "Heritage", rating: 4.7, price: 1500, highlights: ["Archaeology", "Buddhism", "History"], image: "https://images.unsplash.com/photo-1589308454676-47665792f397?w=600", description: "A UNESCO World Heritage site. This 8th-century Somapura Mahavihara was once a global center for learning and a pinnacle of Buddhist architecture." },
+    { id: 11, name: "Ahsan Manzil", district: "Dhaka", category: "Heritage", rating: 4.5, price: 500, highlights: ["Palace", "Old Dhaka", "Mughal"], image: "https://images.unsplash.com/photo-1540316486993-4e089678bd68?w=600", description: "The 'Pink Palace' of Old Dhaka. A symbol of the city's rich Mughal and colonial history, situated on the banks of the Buriganga River." },
+    { id: 12, name: "Jaflong", district: "Sylhet", category: "Nature", rating: 4.4, price: 1800, highlights: ["Zero Point", "Pebbles", "River"], image: "https://images.unsplash.com/photo-1585938389612-a552a28d6914?w=600", description: "Famous for its stone collections and the view of the Dawki Bridge. It sits right at the border under the Meghalayan mountains." },
+    { id: 13, name: "Kuakata Beach", district: "Patuakhali", category: "Coastal", rating: 4.6, price: 3500, highlights: ["Sunrise", "Sunset", "Red Crabs"], image: "https://images.unsplash.com/photo-1590001158193-7ae8a33637e9?w=600", description: "Known as the 'Daughter of the Sea.' Unique for being the only beach in South Asia where you can see both sunrise and sunset from the same spot." },
+    { id: 14, name: "Boga Lake", district: "Bandarban", category: "Adventure", rating: 4.9, price: 6000, highlights: ["Hiking", "Mystery", "Camping"], image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600", description: "A mysterious natural lake 1,200 feet above sea level. It is the base camp for trekking to Keokradong and is steeped in local tribal legends." },
+    { id: 15, name: "60 Dome Mosque", district: "Bagerhat", category: "Heritage", rating: 4.8, price: 1200, highlights: ["UNESCO", "Islamic Art", "Sultanate"], image: "https://images.unsplash.com/photo-1564507592333-c60657eaa0ae?w=600", description: "A UNESCO world heritage site and the largest mosque in Bangladesh from the Sultanate period, featuring stunning terracotta and 77 domes." },
+    { id: 16, name: "Keokradong", district: "Bandarban", category: "Adventure", rating: 4.9, price: 8000, highlights: ["Summit", "Trek", "Clouds"], image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600", description: "Reaching the summit of Keokradong is a badge of honor for hikers, offering a majestic view of the Bandarban hill tracts." },
+    { id: 17, name: "Mahasthangarh", district: "Bogura", category: "Heritage", rating: 4.6, price: 1000, highlights: ["Ancient", "Citadel", "Museum"], image: "https://images.unsplash.com/photo-1589308454676-47665792f397?w=600", description: "The oldest urban archaeological site in Bangladesh, dating back to the 3rd century BCE, once the capital of the Pundravardhana kingdom." },
+    { id: 18, name: "Mainamati", district: "Cumilla", category: "Heritage", rating: 4.7, price: 1200, highlights: ["Buddhist", "Stupa", "War Cemetery"], image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600", description: "A ridge of low hills hosting a series of Buddhist monasteries from the 7th to 12th centuries, including the famous Shalban Vihara." },
+    { id: 19, name: "Lalakhal", district: "Sylhet", category: "Nature", rating: 4.8, price: 2200, highlights: ["Blue Water", "Boat", "Jaintia"], image: "https://images.unsplash.com/photo-1540611025311-01df3cef54b5?w=600", description: "Famous for the mesmerizing emerald blue color of its water, which flows directly from the Jaintia hills of India." },
+    { id: 20, name: "Hanging Bridge", district: "Rangamati", category: "Adventure", rating: 4.7, price: 3000, highlights: ["Iconic", "Lake", "Tribal"], image: "https://images.unsplash.com/photo-1589182397057-b82d51970e2c?w=600", description: "The symbol of Rangamati tourism. This colorful bridge connects two hills over the beautiful Kaptai Lake." },
+    { id: 21, name: "Nafa-khum", district: "Bandarban", category: "Adventure", rating: 4.9, price: 9000, highlights: ["Falls", "Sangu", "Trek"], image: "https://images.unsplash.com/photo-1433086466391-f7ad96850849?w=600", description: "Often called the 'Niagara of Bangladesh.' It is a wild, powerful waterfall deep inside the Thanchi forest reachable via a boat ride on the Sangu." },
+    { id: 22, name: "Kaptai Lake", district: "Rangamati", category: "Nature", rating: 4.8, price: 2500, highlights: ["Cruise", "Hills", "Islands"], image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600", description: "South Asia's largest man-made lake, surrounded by lush green hills, indigenous villages, and vibrant tribal markets." },
+    { id: 23, name: "Sonargaon", district: "Narayanganj", category: "Heritage", rating: 4.6, price: 800, highlights: ["Panam City", "Muslin", "Art"], image: "https://images.unsplash.com/photo-1589308454676-47665792f397?w=600", description: "The ancient capital of Bengal. Panam City within Sonargaon is a ghost town of architectural beauty from the merchant era." },
+    { id: 24, name: "Madhabkunda", district: "Moulvibazar", category: "Nature", rating: 4.5, price: 1500, highlights: ["Waterfalls", "Park", "Nature"], image: "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?w=600", description: "One of the highest waterfalls in the country, crashing down from the Patharia hills into a pool surrounded by lush greenery." },
+    { id: 25, name: "Nijhum Dwip", district: "Noakhali", category: "Coastal", rating: 4.7, price: 6000, highlights: ["Deer", "Bird", "Silence"], image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600", description: "The 'Island of Silence.' A serene delta island home to thousands of spotted deer and a sanctuary for migratory birds." },
+    { id: 26, name: "Monpura Island", district: "Bhola", category: "Coastal", rating: 4.8, price: 4000, highlights: ["Cycling", "Sunset", "River"], image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600", description: "An isolated, peaceful island in the Meghna estuary, known for its vast green fields, cycling paths, and the simple life." },
+    { id: 27, name: "Birishiri", district: "Netrokona", category: "Nature", rating: 4.7, price: 3000, highlights: ["White Clay", "Blue River", "Hills"], image: "https://images.unsplash.com/photo-1540611025311-01df3cef54b5?w=600", description: "Famous for its unique China Clay Hills and the stunning turquoise blue water of the Shomeshwari River." },
+    { id: 28, name: "Puthia Temples", district: "Rajshahi", category: "Heritage", rating: 4.8, price: 1200, highlights: ["Terracotta", "Hindu", "Kings"], image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600", description: "A significant cluster of historic Hindu temples, featuring some of the most exquisite terracotta art in South Asia." },
+    { id: 29, name: "Kantajew Temple", district: "Dinajpur", category: "Heritage", rating: 4.9, price: 1300, highlights: ["Ornate", "Dinajpur", "Epic"], image: "https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?w=600", description: "A late medieval Hindu temple. Every inch of its terracotta walls is decorated with intricate mythological and social stories." },
+    { id: 30, name: "Gaur", district: "C.Nawabganj", category: "Heritage", rating: 4.7, price: 1500, highlights: ["Sultanate", "Mosque", "Gate"], image: "https://images.unsplash.com/photo-1564507592333-c60657eaa0ae?w=600", description: "The once-grand capital of the Bengal Sultanate, now a site of ancient ruins, mosques, and massive gateways." },
+    { id: 31, name: "Lalbagh Fort", district: "Dhaka", category: "Heritage", rating: 4.7, price: 600, highlights: ["Mughal", "Museum", "Pari Bibi"], image: "https://images.unsplash.com/photo-1589308454676-47665792f397?w=600", description: "The most iconic Mughal landmark of Dhaka, containing the tomb of Pari Bibi, a historic mosque, and a museum." },
+    { id: 32, name: "Mainot Ghat", district: "Dhaka", category: "Coastal", rating: 4.5, price: 1200, highlights: ["Padma", "Mini Cox", "Sunset"], image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=600", description: "Often called 'Mini Cox's Bazar' due to the vastness of the Padma river and the waves that break on its sandy shore." },
+    { id: 33, name: "Tajhat Palace", district: "Rangpur", category: "Heritage", rating: 4.8, price: 900, highlights: ["Marble", "Royal", "History"], image: "https://images.unsplash.com/photo-1540316486993-4e089678bd68?w=600", description: "A grand 20th-century palace built by a wealthy merchant, featuring stunning marble stairs and an architectural style reminiscent of a museum." },
+    { id: 34, name: "Floating Market", district: "Barishal", category: "Heritage", rating: 4.8, price: 2500, highlights: ["Guava", "Boats", "Canals"], image: "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=600", description: "Experience the 'Venice of Bengal.' A traditional market where guavas and local produce are sold directly between boats on winding canals." },
+    { id: 35, name: "Baliati Palace", district: "Manikganj", category: "Heritage", rating: 4.6, price: 800, highlights: ["Columns", "Merchant", "Big"], image: "https://images.unsplash.com/photo-1540316486993-4e089678bd68?w=600", description: "One of the finest 19th-century palaces, featuring massive Greco-Roman columns and a sprawling merchant estate layout." },
+    { id: 36, name: "Ramsagar", district: "Dinajpur", category: "Nature", rating: 4.6, price: 900, highlights: ["Dighi", "Deer", "Park"], image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600", description: "The largest man-made pond in Bangladesh, now a peaceful national park with walking trails and a deer sanctuary." },
+    { id: 37, name: "Alutila Cave", district: "Khagrachari", category: "Adventure", rating: 4.7, price: 2000, highlights: ["Mystery", "Torch", "Cave"], image: "https://images.unsplash.com/photo-1623055812970-1f91b402860d?w=600", description: "A natural rocky cave under a hill. Traversing its cool, dark passage requires a flaming torch and a sense of wonder." },
+    { id: 38, name: "Risang Falls", district: "Khagrachari", category: "Adventure", rating: 4.5, price: 2000, highlights: ["Slide", "Nature", "Hill"], image: "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?w=600", description: "A scenic waterfall where the natural rocky slide at the base creates a fun, natural water-park experience." },
+    { id: 39, name: "Shuvolong", district: "Rangamati", category: "Nature", rating: 4.4, price: 1500, highlights: ["Falls", "Lake", "Boat"], image: "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?w=600", description: "A beautiful waterfall that pours directly into the Kaptai Lake, offering a cooling spray to boat travelers." },
+    { id: 40, name: "Inani Beach", district: "Cox's Bazar", category: "Coastal", rating: 4.7, price: 4500, highlights: ["Coral", "Quiet", "Beach"], image: "https://images.unsplash.com/photo-1590001158193-7ae8a33637e9?w=600", description: "Famous for its silent environment and natural rocky coral formations that emerge during low tide, away from the city crowd." },
+    { id: 41, name: "Himchari", district: "Cox's Bazar", category: "Nature", rating: 4.3, price: 1000, highlights: ["Hill", "Falls", "Drive"], image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600", description: "Where the green hills meet the sea. It offers a stunning bird's-eye view of the Bay of Bengal from its hilltop viewpoint." },
+    { id: 42, name: "Lawachara", district: "Moulvibazar", category: "Nature", rating: 4.8, price: 2000, highlights: ["Gibbon", "Forest", "Hiking"], image: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600", description: "A tropical rainforest and national park, home to the rare Hoolock Gibbon and diverse avian species." },
+    { id: 43, name: "Madhabpur Lake", district: "Moulvibazar", category: "Nature", rating: 4.7, price: 1800, highlights: ["Lotus", "Teagarden", "Peace"], image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600", description: "A serene lake surrounded by emerald tea gardens, filled with pink water lilies and wild orchids." },
+    { id: 44, name: "Kherua Mosque", district: "Bogura", category: "Heritage", rating: 4.5, price: 800, highlights: ["Brick", "History", "Sherpur"], image: "https://images.unsplash.com/photo-1564507592333-c60657eaa0ae?w=600", description: "An architectural gem from the 16th century, representing a transition between Sultanate and Mughal brick styles." },
+    { id: 45, name: "Sat Gambuj", district: "Dhaka", category: "Heritage", rating: 4.4, price: 300, highlights: ["Mughal", "7 Domes", "Garden"], image: "https://images.unsplash.com/photo-1564507592333-c60657eaa0ae?w=600", description: "A unique seven-domed mosque standing as a testament to the Mughal era's influence on the architecture of Dhaka." },
+    { id: 46, name: "Guliakhali", district: "Chattogram", category: "Coastal", rating: 4.6, price: 1200, highlights: ["Green", "Beach", "Grass"], image: "https://images.unsplash.com/photo-1590001158193-7ae8a33637e9?w=600", description: "A unique 'green beach' where natural grass patterns and mangrove roots create a landscape unlike any other coastline." },
+    { id: 47, name: "Patenga", district: "Chattogram", category: "Coastal", rating: 4.3, price: 1000, highlights: ["City", "Ships", "Food"], image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600", description: "The bustling city beach of Chittagong, popular for watching giant cargo ships and enjoying spicy street snacks." },
+    { id: 48, name: "Malnicherra", district: "Sylhet", category: "Nature", rating: 4.6, price: 800, highlights: ["Oldest", "Tea", "Walk"], image: "https://images.unsplash.com/photo-1596402184320-417d7178b2cd?w=600", description: "The oldest tea garden in South Asia, established in 1849, offering a lush green escape on the city outskirts." },
+    { id: 49, name: "Jadipai Falls", district: "Bandarban", category: "Adventure", rating: 4.9, price: 8500, highlights: ["Wild", "Wide", "Hard Trek"], image: "https://images.unsplash.com/photo-1433086466391-f7ad96850849?w=600", description: "One of the widest and most majestic waterfalls in Bangladesh, hidden deep within the hills near the Keokradong summit." },
+    { id: 50, name: "Sangu River", district: "Bandarban", category: "Adventure", rating: 5.0, price: 5000, highlights: ["Gorge", "Boat", "Epic"], image: "https://images.unsplash.com/photo-1540611025311-01df3cef54b5?w=600", description: "Arguably the most beautiful river route in the country, cutting through high stone walls and deep jungle gorges." },
+    { id: 51, name: "Hilsa Market", district: "Chandpur", category: "Nature", rating: 4.6, price: 1500, highlights: ["River", "Fish", "Padma"], image: "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=600", description: "The 'Hilsa Capital.' Visit where the Meghna and Padma rivers meet to experience the bustling culture of the national fish." },
+    { id: 52, name: "Patharghata", district: "Barguna", category: "Nature", rating: 4.5, price: 3200, highlights: ["Deer", "Forest", "Fish"], image: "https://images.unsplash.com/photo-1590001158193-7ae8a33637e9?w=600", description: "Where the forest meets the sea. You can often see deer wandering near the coastline in this quiet delta region." },
+    { id: 53, name: "Khadimnagar", district: "Sylhet", category: "Nature", rating: 4.4, price: 1200, highlights: ["Hiking", "Canopy", "Birds"], image: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600", description: "A dense national park offering canopy trails and a great diversity of flora and fauna just north of Sylhet city." },
+    { id: 54, name: "Varendra Museum", district: "Rajshahi", category: "Heritage", rating: 4.8, price: 400, highlights: ["Stone", "Statues", "Oldest"], image: "https://images.unsplash.com/photo-1566121316354-f064f268f270?w=600", description: "The oldest museum in the country, housing priceless stone artifacts and statues from ancient Buddhist and Hindu dynasties." },
+    { id: 55, name: "Somapura Mahavihara", district: "Naogaon", category: "Heritage", rating: 4.9, price: 1500, highlights: ["World Heritage", "Brick", "Grand"], image: "https://images.unsplash.com/photo-1589308454676-47665792f397?w=600", description: "A monumental achievement of architecture. The central shrine at Paharpur is a UNESCO landmark of world history." }
+];
 
-    // --- DOM Elements ---
-    const grid = document.getElementById('destinations-grid');
-    const searchInput = document.getElementById('search-input');
-    const categoryButtons = document.querySelectorAll('.category-btn');
-    const priceRange = document.getElementById('price-range');
-    const priceValue = document.getElementById('price-value');
-    const bookingModal = document.getElementById('booking-modal');
-    const closeBtn = document.querySelector('.close-btn');
-    const bookingForm = document.getElementById('booking-form');
-    const contactForm = document.getElementById('contact-form');
-
-    // --- Core Functions ---
-
-    /**
-     * Renders destination cards based on current filters
-     */
-    function renderDestinations() {
-        // Show loading state briefly
-        grid.innerHTML = `
-            <div class="col-span-full py-20 text-center">
-                <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-emerald-500 border-t-transparent"></div>
-                <p class="mt-4 text-slate-500">Searching for destinations...</p>
-            </div>
-        `;
-
-        setTimeout(() => {
-            const filtered = destinations.filter(dest => {
-                const matchesCategory = activeCategory === 'All' || dest.category === activeCategory;
-                const matchesSearch = dest.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                                     dest.district.toLowerCase().includes(searchQuery.toLowerCase());
-                const matchesPrice = dest.price <= maxPrice;
-                return matchesCategory && matchesSearch && matchesPrice;
-            });
-
-            if (filtered.length === 0) {
-                grid.innerHTML = `
-                    <div class="col-span-full py-20 text-center">
-                        <div class="text-6xl mb-4">📍</div>
-                        <h3 class="text-xl font-bold text-slate-800">No destinations found</h3>
-                        <p class="text-slate-500">Try adjusting your filters or search terms.</p>
-                        <button onclick="resetFilters()" class="mt-4 text-emerald-600 font-medium hover:underline">Reset all filters</button>
-                    </div>
-                `;
-                return;
-            }
-
-            grid.innerHTML = filtered.map(dest => `
-                <div class="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-slate-100 flex flex-col h-full">
-                    <div class="relative overflow-hidden h-64">
-                        <img 
-                            src="${dest.img}" 
-                            alt="${dest.name}" 
-                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                            onerror="this.src='https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800'"
-                        >
-                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-emerald-700 uppercase tracking-wider">
-                            ${dest.category}
-                        </div>
-                        <button onclick="toggleWishlist(${dest.id})" class="absolute top-4 right-4 p-2 rounded-full bg-white/20 backdrop-blur-md text-white hover:bg-white hover:text-rose-500 transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ${wishlist.includes(dest.id) ? 'fill-rose-500 text-rose-500' : ''}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                            </svg>
-                        </button>
-                    </div>
-                    
-                    <div class="p-6 flex flex-col flex-grow">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-bold text-slate-800">${dest.name}</h3>
-                            <div class="flex items-center text-amber-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                                <span class="ml-1 text-sm font-bold text-slate-600">${dest.rating}</span>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center text-slate-500 text-sm mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                            ${dest.district}, Bangladesh
-                        </div>
-                        
-                        <p class="text-slate-600 text-sm line-clamp-2 mb-6">
-                            ${dest.desc}
-                        </p>
-                        
-                        <div class="mt-auto pt-6 border-t border-slate-100 flex items-center justify-between">
-                            <div>
-                                <span class="text-xs text-slate-400 block uppercase font-bold tracking-tighter">Starts from</span>
-                                <span class="text-2xl font-black text-emerald-600">৳${dest.price.toLocaleString()}</span>
-                            </div>
-                            <button onclick="openBookingModal(${dest.id})" class="bg-slate-900 text-white px-5 py-2.5 rounded-2xl font-bold text-sm hover:bg-emerald-600 transition-colors shadow-lg shadow-slate-200">
-                                Book Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }, 400);
-    }
-
-    /**
-     * Filters by category
-     */
-    function handleCategoryClick(e) {
-        const btn = e.currentTarget;
-        categoryButtons.forEach(b => b.classList.remove('active', 'bg-emerald-600', 'text-white'));
-        categoryButtons.forEach(b => b.classList.add('bg-white', 'text-slate-600'));
-        
-        btn.classList.add('active', 'bg-emerald-600', 'text-white');
-        btn.classList.remove('bg-white', 'text-slate-600');
-        
-        activeCategory = btn.dataset.category;
-        renderDestinations();
-    }
-
-    /**
-     * Resets all search and filter states
-     */
-    window.resetFilters = () => {
-        activeCategory = 'All';
-        searchQuery = '';
-        maxPrice = 20000;
-        
-        searchInput.value = '';
-        priceRange.value = 20000;
-        priceValue.textContent = '20,000';
-        
-        categoryButtons.forEach(btn => {
-            if(btn.dataset.category === 'All') btn.click();
-        });
-        
-        renderDestinations();
-    };
-
-    /**
-     * Wishlist Management
-     */
-    window.toggleWishlist = (id) => {
-        const index = wishlist.indexOf(id);
-        if (index > -1) {
-            wishlist.splice(index, 1);
-        } else {
-            wishlist.push(id);
-        }
-        localStorage.setItem('gontobbo_wishlist', JSON.stringify(wishlist));
-        renderDestinations();
-    };
-
-    /**
-     * Booking Modal Logic
-     */
-    window.openBookingModal = (id) => {
-        const dest = destinations.find(d => d.id === id);
-        document.getElementById('modal-dest-name').textContent = dest.name;
-        document.getElementById('modal-dest-id').value = id;
-        bookingModal.classList.remove('hidden');
-        bookingModal.classList.add('flex');
-        document.body.style.overflow = 'hidden';
-    };
-
-    const closeModal = () => {
-        bookingModal.classList.add('hidden');
-        bookingModal.classList.remove('flex');
-        document.body.style.overflow = 'auto';
-    };
-
-    // --- Event Listeners ---
-
-    searchInput.addEventListener('input', (e) => {
-        searchQuery = e.target.value;
-        renderDestinations();
-    });
-
-    categoryButtons.forEach(btn => {
-        btn.addEventListener('click', handleCategoryClick);
-    });
-
-    priceRange.addEventListener('input', (e) => {
-        maxPrice = parseInt(e.target.value);
-        priceValue.textContent = maxPrice.toLocaleString();
-        renderDestinations();
-    });
-
-    closeBtn.addEventListener('click', closeModal);
-    
-    window.addEventListener('click', (e) => {
-        if (e.target === bookingModal) closeModal();
-    });
-
-    // Form Submissions
-    bookingForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const btn = e.target.querySelector('button');
-        const originalText = btn.innerHTML;
-        
-        btn.disabled = true;
-        btn.innerHTML = 'Processing...';
-        
-        setTimeout(() => {
-            alert(`Booking successful for ${document.getElementById('modal-dest-name').textContent}! We will contact you at ${e.target.email.value} soon.`);
-            btn.disabled = false;
-            btn.innerHTML = originalText;
-            closeModal();
-            bookingForm.reset();
-        }, 1500);
-    });
-
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const btn = e.target.querySelector('button');
-        btn.disabled = true;
-        btn.innerHTML = 'Sending...';
-
-        setTimeout(() => {
-            alert("Thank you for your message! Our team will get back to you within 24 hours.");
-            btn.disabled = false;
-            btn.innerHTML = 'Send Message';
-            contactForm.reset();
-        }, 1500);
-    });
-
-    // --- Initialization ---
-    renderDestinations();
-
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('opacity-100', 'translate-y-0');
-                entry.target.classList.remove('opacity-0', 'translate-y-10');
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('section').forEach(section => {
-        section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
-        observer.observe(section);
-    });
-});
+// Exporting the data for use in other files
+// Note: In a browser environment using <script> tags, 
+// 'destinations' becomes a global variable.
