@@ -1,574 +1,66 @@
 /**
- * GONTOBBO - Complete Destination Dataset
- * Total: 55 Handpicked Locations in Bangladesh
+ * Gontobbo | Destination Database
+ * A comprehensive collection of 55 iconic locations in Bangladesh.
  */
 
 const destinations = [
-    // --- CHITTAGONG DIVISION (HILLS & COASTAL) ---
-    {
-        id: 1,
-        name: "Sajek Valley",
-        district: "Rangamati",
-        category: "Hills",
-        rating: 4.9,
-        price: 5500,
-        img: "https://images.unsplash.com/photo-1623491845345-42f1b8a514d3?auto=format&fit=crop&w=800",
-        desc: "Known as the 'Roof of Rangamati', this hilltop resort is famous for its floating clouds and breathtaking sunrises."
-    },
-    {
-        id: 2,
-        name: "Cox's Bazar",
-        district: "Cox's Bazar",
-        category: "Coastal",
-        rating: 4.8,
-        price: 3500,
-        img: "https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=800",
-        desc: "The world's longest natural sea beach stretching 120km, offering stunning sunsets and vibrant local seafood."
-    },
-    {
-        id: 3,
-        name: "Saint Martin's Island",
-        district: "Cox's Bazar",
-        category: "Coastal",
-        rating: 4.9,
-        price: 7000,
-        img: "https://images.unsplash.com/photo-1544735032-6a71dd648d07?auto=format&fit=crop&w=800",
-        desc: "The only coral island in Bangladesh, a tropical paradise with crystal-clear blue water and coconut groves."
-    },
-    {
-        id: 4,
-        name: "Nilgiri",
-        district: "Bandarban",
-        category: "Hills",
-        rating: 4.8,
-        price: 4500,
-        img: "https://images.unsplash.com/photo-1582650625119-3a31f8fa2699?auto=format&fit=crop&w=800",
-        desc: "Located 2200 feet above sea level, offering a spectacular view of the surrounding hills and the Sangu River."
-    },
-    {
-        id: 5,
-        name: "Patenga Beach",
-        district: "Chittagong",
-        category: "Coastal",
-        rating: 4.3,
-        price: 1500,
-        img: "https://images.unsplash.com/photo-1622550181775-520f9247690f?auto=format&fit=crop&w=800",
-        desc: "A popular beach near the port city known for its stone-blocked shoreline and sunset street food."
-    },
-    {
-        id: 6,
-        name: "Kaptai Lake",
-        district: "Rangamati",
-        category: "Nature",
-        rating: 4.7,
-        price: 3000,
-        img: "https://images.unsplash.com/photo-1596402184320-417d7178b2cd?auto=format&fit=crop&w=800",
-        desc: "South Asia's largest man-made lake, surrounded by verdant hills and accessible by scenic boat rides."
-    },
-    {
-        id: 7,
-        name: "Keokradong Peak",
-        district: "Bandarban",
-        category: "Adventure",
-        rating: 4.8,
-        price: 6000,
-        img: "https://images.unsplash.com/photo-1623062310115-684c304886b6?auto=format&fit=crop&w=800",
-        desc: "Once thought to be the highest peak in the country, a favorite for trekkers looking for a challenge."
-    },
-    {
-        id: 8,
-        name: "Chandranath Hill",
-        district: "Chittagong",
-        category: "Hills",
-        rating: 4.6,
-        price: 1200,
-        img: "https://images.unsplash.com/photo-1621245781441-26792671e621?auto=format&fit=crop&w=800",
-        desc: "A famous pilgrimage site for Hindus with a historic temple atop the Sitakunda hill range."
-    },
-    {
-        id: 9,
-        name: "Nafa-khum Waterfall",
-        district: "Bandarban",
-        category: "Adventure",
-        rating: 4.9,
-        price: 8500,
-        img: "https://images.unsplash.com/photo-1598230439775-812061030e42?auto=format&fit=crop&w=800",
-        desc: "The 'Niagara of Bangladesh', this remote waterfall requires a thrilling boat ride and trek to reach."
-    },
-    {
-        id: 10,
-        name: "Inani Beach",
-        district: "Cox's Bazar",
-        category: "Coastal",
-        rating: 4.7,
-        price: 2500,
-        img: "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=800",
-        desc: "Famous for its unique rock formations and quiet, serene environment away from the main crowd."
-    },
-
-    // --- SYLHET DIVISION (TEA GARDENS & NATURE) ---
-    {
-        id: 11,
-        name: "Ratargul Swamp Forest",
-        district: "Sylhet",
-        category: "Nature",
-        rating: 4.6,
-        price: 2000,
-        img: "https://images.unsplash.com/photo-1620650993098-b80980c6579c?auto=format&fit=crop&w=800",
-        desc: "The only freshwater swamp forest in Bangladesh, often compared to the Amazon rainforest."
-    },
-    {
-        id: 12,
-        name: "Bisnakandi",
-        district: "Sylhet",
-        category: "Nature",
-        rating: 4.7,
-        price: 2800,
-        img: "https://images.unsplash.com/photo-1590001158193-79ef89fc285c?auto=format&fit=crop&w=800",
-        desc: "A cluster of rocks coming from the hills of Meghalaya forming a natural pool of crystal clear water."
-    },
-    {
-        id: 13,
-        name: "Jaflong",
-        district: "Sylhet",
-        category: "Nature",
-        rating: 4.5,
-        price: 2200,
-        img: "https://images.unsplash.com/photo-1610471924041-3b707e46536b?auto=format&fit=crop&w=800",
-        desc: "Famous for its stone collections and tea gardens situated right at the foot of the hills."
-    },
-    {
-        id: 14,
-        name: "Tanguar Haor",
-        district: "Sunamganj",
-        category: "Nature",
-        rating: 4.8,
-        price: 9000,
-        img: "https://images.unsplash.com/photo-1595188339002-c8407338e3e4?auto=format&fit=crop&w=800",
-        desc: "A unique wetland ecosystem that serves as a sanctuary for migratory birds during winter."
-    },
-    {
-        id: 15,
-        name: "Lawachara National Park",
-        district: "Maulvibazar",
-        category: "Nature",
-        rating: 4.4,
-        price: 1800,
-        img: "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=800",
-        desc: "A lush semi-evergreen forest rich in biodiversity, including the rare Hoolock Gibbon."
-    },
-    {
-        id: 16,
-        name: "Madhabkunda Waterfall",
-        district: "Maulvibazar",
-        category: "Nature",
-        rating: 4.3,
-        price: 1500,
-        img: "https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&w=800",
-        desc: "One of the highest waterfalls in Bangladesh, surrounded by dense forests and tea estates."
-    },
-    {
-        id: 17,
-        name: "Lalakhal",
-        district: "Sylhet",
-        category: "Nature",
-        rating: 4.6,
-        price: 3200,
-        img: "https://images.unsplash.com/photo-1596402184320-417d7178b2cd?auto=format&fit=crop&w=800",
-        desc: "A river known for its emerald green water that changes color depending on light and depth."
-    },
-    {
-        id: 18,
-        name: "Sreemangal Tea Gardens",
-        district: "Maulvibazar",
-        category: "Nature",
-        rating: 4.8,
-        price: 4000,
-        img: "https://images.unsplash.com/photo-1567151244199-6f91d84814e4?auto=format&fit=crop&w=800",
-        desc: "The tea capital of Bangladesh, featuring endless rolling hills of manicured tea bushes."
-    },
-
-    // --- DHAKA DIVISION (HERITAGE & CULTURE) ---
-    {
-        id: 19,
-        name: "Ahsan Manzil",
-        district: "Dhaka",
-        category: "Heritage",
-        rating: 4.4,
-        price: 500,
-        img: "https://images.unsplash.com/photo-1624314138470-5a2f24623f10?auto=format&fit=crop&w=800",
-        desc: "The historic Pink Palace, once the seat of the Nawabs, now a magnificent museum by the Buriganga."
-    },
-    {
-        id: 20,
-        name: "Lalbagh Fort",
-        district: "Dhaka",
-        category: "Heritage",
-        rating: 4.5,
-        price: 400,
-        img: "https://images.unsplash.com/photo-1574523992226-f76e7370367d?auto=format&fit=crop&w=800",
-        desc: "A 17th-century Mughal fort complex with a tomb, mosque, and Diwan-i-Aam."
-    },
-    {
-        id: 21,
-        name: "Sonargaon",
-        district: "Narayanganj",
-        category: "Heritage",
-        rating: 4.6,
-        price: 800,
-        img: "https://images.unsplash.com/photo-1624022879685-3b9a14782069?auto=format&fit=crop&w=800",
-        desc: "The ancient capital of Bengal, featuring Panam City and the Folk Art & Craft Museum."
-    },
-    {
-        id: 22,
-        name: "National Martyrs' Memorial",
-        district: "Savar",
-        category: "Heritage",
-        rating: 4.8,
-        price: 300,
-        img: "https://images.unsplash.com/photo-1624128527339-e9354096053f?auto=format&fit=crop&w=800",
-        desc: "An architectural masterpiece dedicated to those who sacrificed their lives in the 1971 war."
-    },
-    {
-        id: 23,
-        name: "Tara Masjid (Star Mosque)",
-        district: "Dhaka",
-        category: "Heritage",
-        rating: 4.3,
-        price: 200,
-        img: "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=800",
-        desc: "A stunning mosque decorated with blue stars and Japanese chinitikri mosaic art."
-    },
-    {
-        id: 24,
-        name: "Baldha Garden",
-        district: "Dhaka",
-        category: "Nature",
-        rating: 4.0,
-        price: 150,
-        img: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=800",
-        desc: "One of the oldest botanical gardens in the region, housing a rare collection of plants."
-    },
-
-    // --- KHULNA & BARISAL (MANGROVES & RIVERS) ---
-    {
-        id: 25,
-        name: "Sundarbans East Zone",
-        district: "Bagerhat",
-        category: "Nature",
-        rating: 4.9,
-        price: 12000,
-        img: "https://images.unsplash.com/photo-1589998059171-988d887df646?auto=format&fit=crop&w=800",
-        desc: "Deep mangrove exploration where the land meets the sea, ideal for tiger spotting."
-    },
-    {
-        id: 26,
-        name: "Sixty Dome Mosque",
-        district: "Bagerhat",
-        category: "Heritage",
-        rating: 4.8,
-        price: 1200,
-        img: "https://images.unsplash.com/photo-1591873211322-959c1186f9f6?auto=format&fit=crop&w=800",
-        desc: "A UNESCO World Heritage site and a masterpiece of 15th-century Tughlaq style architecture."
-    },
-    {
-        id: 27,
-        name: "Kuakata Beach",
-        district: "Patuakhali",
-        category: "Coastal",
-        rating: 4.7,
-        price: 5000,
-        img: "https://images.unsplash.com/photo-1584113374825-97e3a985d18d?auto=format&fit=crop&w=800",
-        desc: "The 'Daughter of the Ocean', uniquely offering views of both sunrise and sunset from the same spot."
-    },
-    {
-        id: 28,
-        name: "Floating Guava Market",
-        district: "Jhalokati",
-        category: "Nature",
-        rating: 4.5,
-        price: 3500,
-        img: "https://images.unsplash.com/photo-1621245781441-26792671e621?auto=format&fit=crop&w=800",
-        desc: "A centuries-old tradition where farmers sell fresh guavas from their boats in the canals."
-    },
-    {
-        id: 29,
-        name: "Durgasagar Dighi",
-        district: "Barisal",
-        category: "Nature",
-        rating: 4.2,
-        price: 800,
-        img: "https://images.unsplash.com/photo-1596402184320-417d7178b2cd?auto=format&fit=crop&w=800",
-        desc: "The largest lake in southern Bangladesh, providing a peaceful resting place for winter birds."
-    },
-    {
-        id: 30,
-        name: "Karamjal Wildlife Centre",
-        district: "Bagerhat",
-        category: "Nature",
-        rating: 4.4,
-        price: 2500,
-        img: "https://images.unsplash.com/photo-1589998059171-988d887df646?auto=format&fit=crop&w=800",
-        desc: "A gateway to the Sundarbans with a deer breeding center and crocodile farm."
-    },
-
-    // --- RAJSHAHI & RANGPUR (ANCIENT HISTORY) ---
-    {
-        id: 31,
-        name: "Somapura Mahavihara",
-        district: "Naogaon",
-        category: "Heritage",
-        rating: 4.9,
-        price: 3500,
-        img: "https://images.unsplash.com/photo-1598230439775-812061030e42?auto=format&fit=crop&w=800",
-        desc: "A world-renowned 8th-century Buddhist monastery, one of the most important archaeological sites in the world."
-    },
-    {
-        id: 32,
-        name: "Mahasthangarh",
-        district: "Bogra",
-        category: "Heritage",
-        rating: 4.7,
-        price: 1500,
-        img: "https://images.unsplash.com/photo-1624022879685-3b9a14782069?auto=format&fit=crop&w=800",
-        desc: "The oldest urban archaeological site in Bangladesh, dating back to at least the 3rd century BCE."
-    },
-    {
-        id: 33,
-        name: "Puthia Temple Complex",
-        district: "Rajshahi",
-        category: "Heritage",
-        rating: 4.6,
-        price: 2200,
-        img: "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=800",
-        desc: "A cluster of historic Hindu temples with intricate terracotta designs in a peaceful village."
-    },
-    {
-        id: 34,
-        name: "Kantajew Temple",
-        district: "Dinajpur",
-        category: "Heritage",
-        rating: 4.8,
-        price: 2800,
-        img: "https://images.unsplash.com/photo-1574523992226-f76e7370367d?auto=format&fit=crop&w=800",
-        desc: "An 18th-century brick temple renowned for its superb terracotta ornamentation depicting epics."
-    },
-    {
-        id: 35,
-        name: "Varendra Research Museum",
-        district: "Rajshahi",
-        category: "Heritage",
-        rating: 4.5,
-        price: 500,
-        img: "https://images.unsplash.com/photo-1624314138470-5a2f24623f10?auto=format&fit=crop&w=800",
-        desc: "The first museum in Bangladesh, housing a rich collection of sculptures from the Pala period."
-    },
-    {
-        id: 36,
-        name: "Natore Rajbari",
-        district: "Natore",
-        category: "Heritage",
-        rating: 4.4,
-        price: 1200,
-        img: "https://images.unsplash.com/photo-1596402184320-417d7178b2cd?auto=format&fit=crop&w=800",
-        desc: "A prominent palace complex that was the residence of the Rajshahi Raj family."
-    },
-
-    // --- ADVENTURE & HIDDEN GEMS ---
-    {
-        id: 37,
-        name: "Amiakhum Waterfall",
-        district: "Bandarban",
-        category: "Adventure",
-        rating: 4.9,
-        price: 11000,
-        img: "https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&w=800",
-        desc: "Often cited as the most beautiful waterfall in the country, deep inside the Remakri forests."
-    },
-    {
-        id: 38,
-        name: "Susang Durgapur",
-        district: "Netrokona",
-        category: "Adventure",
-        rating: 4.5,
-        price: 4500,
-        img: "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=800",
-        desc: "Famous for the blue-water Birishiri lake and the scenic ceramic hills near the Someshwari River."
-    },
-    {
-        id: 39,
-        name: "Manpura Island",
-        district: "Bhola",
-        category: "Nature",
-        rating: 4.4,
-        price: 5500,
-        img: "https://images.unsplash.com/photo-1584113374825-97e3a985d18d?auto=format&fit=crop&w=800",
-        desc: "A remote island in the middle of the Meghna river estuary, known for its pristine natural beauty."
-    },
-    {
-        id: 40,
-        name: "Chimbuk Hill",
-        district: "Bandarban",
-        category: "Hills",
-        rating: 4.5,
-        price: 1500,
-        img: "https://images.unsplash.com/photo-1623491845345-42f1b8a514d3?auto=format&fit=crop&w=800",
-        desc: "Known as the third highest peak in Bangladesh, offering panoramic views of the cloud-covered landscape."
-    },
-    {
-        id: 41,
-        name: "Hiron Point",
-        district: "Sundarbans",
-        category: "Nature",
-        rating: 4.7,
-        price: 15000,
-        img: "https://images.unsplash.com/photo-1589998059171-988d887df646?auto=format&fit=crop&w=800",
-        desc: "A world heritage site in the Sundarbans, offering a great chance to see tigers, deer, and monkeys."
-    },
-    {
-        id: 42,
-        name: "Mainimati Ruins",
-        district: "Comilla",
-        category: "Heritage",
-        rating: 4.6,
-        price: 1000,
-        img: "https://images.unsplash.com/photo-1598230439775-812061030e42?auto=format&fit=crop&w=800",
-        desc: "An isolated ridge containing more than 50 ancient Buddhist sites dating from 8th to 12th century."
-    },
-    {
-        id: 43,
-        name: "Foy's Lake",
-        district: "Chittagong",
-        category: "Adventure",
-        rating: 4.1,
-        price: 2500,
-        img: "https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=800",
-        desc: "An artificial lake built in 1924, now a popular theme park and picnic spot surrounded by hills."
-    },
-    {
-        id: 44,
-        name: "Hum Hum Waterfall",
-        district: "Maulvibazar",
-        category: "Adventure",
-        rating: 4.5,
-        price: 3200,
-        img: "https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&w=800",
-        desc: "A hidden waterfall deep in the Rajkandi forest, only reachable through a challenging jungle trek."
-    },
-    {
-        id: 45,
-        name: "Boga Lake",
-        district: "Bandarban",
-        category: "Nature",
-        rating: 4.8,
-        price: 5000,
-        img: "https://images.unsplash.com/photo-1596402184320-417d7178b2cd?auto=format&fit=crop&w=800",
-        desc: "A natural alpine lake located 1200 feet above sea level, wrapped in tribal legends and myths."
-    },
-    {
-        id: 46,
-        name: "Ramsagar Dighi",
-        district: "Dinajpur",
-        category: "Nature",
-        rating: 4.3,
-        price: 1500,
-        img: "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=800",
-        desc: "The largest man-made pond in Bangladesh, excavated in the 18th century to fight a severe famine."
-    },
-    {
-        id: 47,
-        name: "Tajhat Palace",
-        district: "Rangpur",
-        category: "Heritage",
-        rating: 4.6,
-        price: 1800,
-        img: "https://images.unsplash.com/photo-1624314138470-5a2f24623f10?auto=format&fit=crop&w=800",
-        desc: "A grand palace built by Maharaja Kumar Gopal Lal Roy, now serving as a regional museum."
-    },
-    {
-        id: 48,
-        name: "Dublar Char",
-        district: "Sundarbans",
-        category: "Nature",
-        rating: 4.5,
-        price: 13000,
-        img: "https://images.unsplash.com/photo-1589998059171-988d887df646?auto=format&fit=crop&w=800",
-        desc: "A small island in the Bay of Bengal known for its fishing industry and deer herds."
-    },
-    {
-        id: 49,
-        name: "Jatarpur Mosque",
-        district: "Sylhet",
-        category: "Heritage",
-        rating: 4.2,
-        price: 500,
-        img: "https://images.unsplash.com/photo-1591873211322-959c1186f9f6?auto=format&fit=crop&w=800",
-        desc: "A beautiful example of local Islamic architecture nestled in the Sylhet tea garden valleys."
-    },
-    {
-        id: 50,
-        name: "Sitakunda Ecopark",
-        district: "Chittagong",
-        category: "Nature",
-        rating: 4.4,
-        price: 2000,
-        img: "https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&w=800",
-        desc: "Contains botanical gardens, a deer park, and the famous Sahasradhara and Suptadhara waterfalls."
-    },
-    {
-        id: 51,
-        name: "Sat Gambuj Mosque",
-        district: "Dhaka",
-        category: "Heritage",
-        rating: 4.3,
-        price: 300,
-        img: "https://images.unsplash.com/photo-1574523992226-f76e7370367d?auto=format&fit=crop&w=800",
-        desc: "A Seven Domed Mosque situated in Mohammadpur, exhibiting the classic provincial Mughal style."
-    },
-    {
-        id: 52,
-        name: "Monpura Coast",
-        district: "Bhola",
-        category: "Coastal",
-        rating: 4.4,
-        price: 6000,
-        img: "https://images.unsplash.com/photo-1584113374825-97e3a985d18d?auto=format&fit=crop&w=800",
-        desc: "Untouched coastal views where the river meets the sea, ideal for camping and solitude."
-    },
-    {
-        id: 53,
-        name: "Baklai Waterfall",
-        district: "Bandarban",
-        category: "Adventure",
-        rating: 4.8,
-        price: 12000,
-        img: "https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&w=800",
-        desc: "Considered the highest waterfall in Bangladesh, located in a very remote part of Bandarban."
-    },
-    {
-        id: 54,
-        name: "Dhanmondi Lake",
-        district: "Dhaka",
-        category: "Nature",
-        rating: 4.2,
-        price: 200,
-        img: "https://images.unsplash.com/photo-1596402184320-417d7178b2cd?auto=format&fit=crop&w=800",
-        desc: "A peaceful urban retreat in the capital, popular for walking and traditional street foods."
-    },
-    {
-        id: 55,
-        name: "Bijoypur Hills",
-        district: "Netrokona",
-        category: "Hills",
-        rating: 4.4,
-        price: 3800,
-        img: "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=800",
-        desc: "White ceramic hills and a turquoise lake located near the Garo tribal area by the Indian border."
-    }
+    { id: 1, name: "Sajek Valley", district: "Rangamati", category: "Hills", rating: 4.9, price: 4500, highlights: ["Kanglak Para", "Clouds", "Sunrise"], image: "https://images.unsplash.com/photo-1623055812970-1f91b402860d?w=600", description: "Known as the 'Roof of Rangamati,' Sajek is a valley of clouds. Perched 1,800 feet above sea level, it offers a surreal view of the rolling Mizoram hills and traditional tribal lifestyle." },
+    { id: 2, name: "Cox's Bazar", district: "Cox's Bazar", category: "Coastal", rating: 4.8, price: 5000, highlights: ["Marine Drive", "Inani", "Surfing"], image: "https://images.unsplash.com/photo-1590001158193-7ae8a33637e9?w=600", description: "Boasting the world's longest natural sandy sea beach, Cox's Bazar is the tourism capital of Bangladesh, famous for its vibrant sunsets and the scenic Marine Drive road." },
+    { id: 3, name: "Sundarbans", district: "Khulna", category: "Nature", rating: 4.7, price: 12000, highlights: ["Tigers", "Mangrove", "Boating"], image: "https://images.unsplash.com/photo-1621863587424-633b47e53f16?w=600", description: "The largest mangrove forest on earth and a UNESCO World Heritage site. It is a mystical land of tides, home to the majestic Royal Bengal Tiger and diverse wildlife." },
+    { id: 4, name: "Saint Martin", district: "Cox's Bazar", category: "Coastal", rating: 4.9, price: 7000, highlights: ["Coral", "Crystal Water", "Fish"], image: "https://images.unsplash.com/photo-1589982841216-2e81650ad3f0?w=600", description: "The only coral island in Bangladesh. With its crystal clear blue water, coconut groves, and fresh seafood, it is a tropical paradise in the Bay of Bengal." },
+    { id: 5, name: "Sreemangal", district: "Moulvibazar", category: "Nature", rating: 4.8, price: 3500, highlights: ["Tea Gardens", "Lawachara", "7-Layer Tea"], image: "https://images.unsplash.com/photo-1596402184320-417d7178b2cd?w=600", description: "The 'Tea Capital' of Bangladesh. Sreemangal features an endless carpet of green tea gardens, rainforests, and the world-famous multi-layered tea." },
+    { id: 6, name: "Tanguar Haor", district: "Sunamganj", category: "Nature", rating: 4.8, price: 4000, highlights: ["Houseboat", "Water", "Watchtower"], image: "https://images.unsplash.com/photo-1624314138470-5a2f24623f10?w=600", description: "A vast freshwater wetland ecosystem. Living on a luxury houseboat while exploring swamp forests and crystal clear water is a premier monsoon adventure." },
+    { id: 7, name: "Bichanakandi", district: "Sylhet", category: "Nature", rating: 4.7, price: 2500, highlights: ["Stone", "Clear Water", "Hills"], image: "https://images.unsplash.com/photo-1585938389612-a552a28d6914?w=600", description: "Where layers of the Khasi mountains meet. It's a stone collection area where cold mountain streams flow into the river, creating a stunning natural landscape." },
+    { id: 8, name: "Nilgiri", district: "Bandarban", category: "Hills", rating: 4.9, price: 4500, highlights: ["Height", "Clouds", "Resort"], image: "https://images.unsplash.com/photo-1623253549925-542e75e9f85c?w=600", description: "The highest hill resort in Bangladesh. Operated by the Bangladesh Army, it offers breathtaking views of the horizon above the cloud line." },
+    { id: 9, name: "Ratargul Forest", district: "Sylhet", category: "Nature", rating: 4.6, price: 2000, highlights: ["Swamp", "Boating", "Green"], image: "https://images.unsplash.com/photo-1624314138470-5a2f24623f10?w=600", description: "Known as the Amazon of Bangladesh. It is one of the few freshwater swamp forests in the world, perfect for peaceful monsoon boat rides through submerged trees." },
+    { id: 10, name: "Paharpur Vihara", district: "Naogaon", category: "Heritage", rating: 4.7, price: 1500, highlights: ["Archaeology", "Buddhism", "History"], image: "https://images.unsplash.com/photo-1589308454676-47665792f397?w=600", description: "A UNESCO World Heritage site. This 8th-century Somapura Mahavihara was once a global center for learning and a pinnacle of Buddhist architecture." },
+    { id: 11, name: "Ahsan Manzil", district: "Dhaka", category: "Heritage", rating: 4.5, price: 500, highlights: ["Palace", "Old Dhaka", "Mughal"], image: "https://images.unsplash.com/photo-1540316486993-4e089678bd68?w=600", description: "The 'Pink Palace' of Old Dhaka. A symbol of the city's rich Mughal and colonial history, situated on the banks of the Buriganga River." },
+    { id: 12, name: "Jaflong", district: "Sylhet", category: "Nature", rating: 4.4, price: 1800, highlights: ["Zero Point", "Pebbles", "River"], image: "https://images.unsplash.com/photo-1585938389612-a552a28d6914?w=600", description: "Famous for its stone collections and the view of the Dawki Bridge. It sits right at the border under the Meghalayan mountains." },
+    { id: 13, name: "Kuakata Beach", district: "Patuakhali", category: "Coastal", rating: 4.6, price: 3500, highlights: ["Sunrise", "Sunset", "Red Crabs"], image: "https://images.unsplash.com/photo-1590001158193-7ae8a33637e9?w=600", description: "Known as the 'Daughter of the Sea.' Unique for being the only beach in South Asia where you can see both sunrise and sunset from the same spot." },
+    { id: 14, name: "Boga Lake", district: "Bandarban", category: "Adventure", rating: 4.9, price: 6000, highlights: ["Hiking", "Mystery", "Camping"], image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600", description: "A mysterious natural lake 1,200 feet above sea level. It is the base camp for trekking to Keokradong and is steeped in local tribal legends." },
+    { id: 15, name: "60 Dome Mosque", district: "Bagerhat", category: "Heritage", rating: 4.8, price: 1200, highlights: ["UNESCO", "Islamic Art", "Sultanate"], image: "https://images.unsplash.com/photo-1564507592333-c60657eaa0ae?w=600", description: "A UNESCO world heritage site and the largest mosque in Bangladesh from the Sultanate period, featuring stunning terracotta and 77 domes." },
+    { id: 16, name: "Keokradong", district: "Bandarban", category: "Adventure", rating: 4.9, price: 8000, highlights: ["Summit", "Trek", "Clouds"], image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600", description: "Reaching the summit of Keokradong is a badge of honor for hikers, offering a majestic view of the Bandarban hill tracts." },
+    { id: 17, name: "Mahasthangarh", district: "Bogura", category: "Heritage", rating: 4.6, price: 1000, highlights: ["Ancient", "Citadel", "Museum"], image: "https://images.unsplash.com/photo-1589308454676-47665792f397?w=600", description: "The oldest urban archaeological site in Bangladesh, dating back to the 3rd century BCE, once the capital of the Pundravardhana kingdom." },
+    { id: 18, name: "Mainamati", district: "Cumilla", category: "Heritage", rating: 4.7, price: 1200, highlights: ["Buddhist", "Stupa", "War Cemetery"], image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600", description: "A ridge of low hills hosting a series of Buddhist monasteries from the 7th to 12th centuries, including the famous Shalban Vihara." },
+    { id: 19, name: "Lalakhal", district: "Sylhet", category: "Nature", rating: 4.8, price: 2200, highlights: ["Blue Water", "Boat", "Jaintia"], image: "https://images.unsplash.com/photo-1540611025311-01df3cef54b5?w=600", description: "Famous for the mesmerizing emerald blue color of its water, which flows directly from the Jaintia hills of India." },
+    { id: 20, name: "Hanging Bridge", district: "Rangamati", category: "Adventure", rating: 4.7, price: 3000, highlights: ["Iconic", "Lake", "Tribal"], image: "https://images.unsplash.com/photo-1589182397057-b82d51970e2c?w=600", description: "The symbol of Rangamati tourism. This colorful bridge connects two hills over the beautiful Kaptai Lake." },
+    { id: 21, name: "Nafa-khum", district: "Bandarban", category: "Adventure", rating: 4.9, price: 9000, highlights: ["Falls", "Sangu", "Trek"], image: "https://images.unsplash.com/photo-1433086466391-f7ad96850849?w=600", description: "Often called the 'Niagara of Bangladesh.' It is a wild, powerful waterfall deep inside the Thanchi forest reachable via a boat ride on the Sangu." },
+    { id: 22, name: "Kaptai Lake", district: "Rangamati", category: "Nature", rating: 4.8, price: 2500, highlights: ["Cruise", "Hills", "Islands"], image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600", description: "South Asia's largest man-made lake, surrounded by lush green hills, indigenous villages, and vibrant tribal markets." },
+    { id: 23, name: "Sonargaon", district: "Narayanganj", category: "Heritage", rating: 4.6, price: 800, highlights: ["Panam City", "Muslin", "Art"], image: "https://images.unsplash.com/photo-1589308454676-47665792f397?w=600", description: "The ancient capital of Bengal. Panam City within Sonargaon is a ghost town of architectural beauty from the merchant era." },
+    { id: 24, name: "Madhabkunda", district: "Moulvibazar", category: "Nature", rating: 4.5, price: 1500, highlights: ["Waterfalls", "Park", "Nature"], image: "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?w=600", description: "One of the highest waterfalls in the country, crashing down from the Patharia hills into a pool surrounded by lush greenery." },
+    { id: 25, name: "Nijhum Dwip", district: "Noakhali", category: "Coastal", rating: 4.7, price: 6000, highlights: ["Deer", "Bird", "Silence"], image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600", description: "The 'Island of Silence.' A serene delta island home to thousands of spotted deer and a sanctuary for migratory birds." },
+    { id: 26, name: "Monpura Island", district: "Bhola", category: "Coastal", rating: 4.8, price: 4000, highlights: ["Cycling", "Sunset", "River"], image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600", description: "An isolated, peaceful island in the Meghna estuary, known for its vast green fields, cycling paths, and the simple life." },
+    { id: 27, name: "Birishiri", district: "Netrokona", category: "Nature", rating: 4.7, price: 3000, highlights: ["White Clay", "Blue River", "Hills"], image: "https://images.unsplash.com/photo-1540611025311-01df3cef54b5?w=600", description: "Famous for its unique China Clay Hills and the stunning turquoise blue water of the Shomeshwari River." },
+    { id: 28, name: "Puthia Temples", district: "Rajshahi", category: "Heritage", rating: 4.8, price: 1200, highlights: ["Terracotta", "Hindu", "Kings"], image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600", description: "A significant cluster of historic Hindu temples, featuring some of the most exquisite terracotta art in South Asia." },
+    { id: 29, name: "Kantajew Temple", district: "Dinajpur", category: "Heritage", rating: 4.9, price: 1300, highlights: ["Ornate", "Dinajpur", "Epic"], image: "https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?w=600", description: "A late medieval Hindu temple. Every inch of its terracotta walls is decorated with intricate mythological and social stories." },
+    { id: 30, name: "Gaur", district: "C.Nawabganj", category: "Heritage", rating: 4.7, price: 1500, highlights: ["Sultanate", "Mosque", "Gate"], image: "https://images.unsplash.com/photo-1564507592333-c60657eaa0ae?w=600", description: "The once-grand capital of the Bengal Sultanate, now a site of ancient ruins, mosques, and massive gateways." },
+    { id: 31, name: "Lalbagh Fort", district: "Dhaka", category: "Heritage", rating: 4.7, price: 600, highlights: ["Mughal", "Museum", "Pari Bibi"], image: "https://images.unsplash.com/photo-1589308454676-47665792f397?w=600", description: "The most iconic Mughal landmark of Dhaka, containing the tomb of Pari Bibi, a historic mosque, and a museum." },
+    { id: 32, name: "Mainot Ghat", district: "Dhaka", category: "Coastal", rating: 4.5, price: 1200, highlights: ["Padma", "Mini Cox", "Sunset"], image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=600", description: "Often called 'Mini Cox's Bazar' due to the vastness of the Padma river and the waves that break on its sandy shore." },
+    { id: 33, name: "Tajhat Palace", district: "Rangpur", category: "Heritage", rating: 4.8, price: 900, highlights: ["Marble", "Royal", "History"], image: "https://images.unsplash.com/photo-1540316486993-4e089678bd68?w=600", description: "A grand 20th-century palace built by a wealthy merchant, featuring stunning marble stairs and an architectural style reminiscent of a museum." },
+    { id: 34, name: "Floating Market", district: "Barishal", category: "Heritage", rating: 4.8, price: 2500, highlights: ["Guava", "Boats", "Canals"], image: "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=600", description: "Experience the 'Venice of Bengal.' A traditional market where guavas and local produce are sold directly between boats on winding canals." },
+    { id: 35, name: "Baliati Palace", district: "Manikganj", category: "Heritage", rating: 4.6, price: 800, highlights: ["Columns", "Merchant", "Big"], image: "https://images.unsplash.com/photo-1540316486993-4e089678bd68?w=600", description: "One of the finest 19th-century palaces, featuring massive Greco-Roman columns and a sprawling merchant estate layout." },
+    { id: 36, name: "Ramsagar", district: "Dinajpur", category: "Nature", rating: 4.6, price: 900, highlights: ["Dighi", "Deer", "Park"], image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600", description: "The largest man-made pond in Bangladesh, now a peaceful national park with walking trails and a deer sanctuary." },
+    { id: 37, name: "Alutila Cave", district: "Khagrachari", category: "Adventure", rating: 4.7, price: 2000, highlights: ["Mystery", "Torch", "Cave"], image: "https://images.unsplash.com/photo-1623055812970-1f91b402860d?w=600", description: "A natural rocky cave under a hill. Traversing its cool, dark passage requires a flaming torch and a sense of wonder." },
+    { id: 38, name: "Risang Falls", district: "Khagrachari", category: "Adventure", rating: 4.5, price: 2000, highlights: ["Slide", "Nature", "Hill"], image: "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?w=600", description: "A scenic waterfall where the natural rocky slide at the base creates a fun, natural water-park experience." },
+    { id: 39, name: "Shuvolong", district: "Rangamati", category: "Nature", rating: 4.4, price: 1500, highlights: ["Falls", "Lake", "Boat"], image: "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?w=600", description: "A beautiful waterfall that pours directly into the Kaptai Lake, offering a cooling spray to boat travelers." },
+    { id: 40, name: "Inani Beach", district: "Cox's Bazar", category: "Coastal", rating: 4.7, price: 4500, highlights: ["Coral", "Quiet", "Beach"], image: "https://images.unsplash.com/photo-1590001158193-7ae8a33637e9?w=600", description: "Famous for its silent environment and natural rocky coral formations that emerge during low tide, away from the city crowd." },
+    { id: 41, name: "Himchari", district: "Cox's Bazar", category: "Nature", rating: 4.3, price: 1000, highlights: ["Hill", "Falls", "Drive"], image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600", description: "Where the green hills meet the sea. It offers a stunning bird's-eye view of the Bay of Bengal from its hilltop viewpoint." },
+    { id: 42, name: "Lawachara", district: "Moulvibazar", category: "Nature", rating: 4.8, price: 2000, highlights: ["Gibbon", "Forest", "Hiking"], image: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600", description: "A tropical rainforest and national park, home to the rare Hoolock Gibbon and diverse avian species." },
+    { id: 43, name: "Madhabpur Lake", district: "Moulvibazar", category: "Nature", rating: 4.7, price: 1800, highlights: ["Lotus", "Teagarden", "Peace"], image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600", description: "A serene lake surrounded by emerald tea gardens, filled with pink water lilies and wild orchids." },
+    { id: 44, name: "Kherua Mosque", district: "Bogura", category: "Heritage", rating: 4.5, price: 800, highlights: ["Brick", "History", "Sherpur"], image: "https://images.unsplash.com/photo-1564507592333-c60657eaa0ae?w=600", description: "An architectural gem from the 16th century, representing a transition between Sultanate and Mughal brick styles." },
+    { id: 45, name: "Sat Gambuj", district: "Dhaka", category: "Heritage", rating: 4.4, price: 300, highlights: ["Mughal", "7 Domes", "Garden"], image: "https://images.unsplash.com/photo-1564507592333-c60657eaa0ae?w=600", description: "A unique seven-domed mosque standing as a testament to the Mughal era's influence on the architecture of Dhaka." },
+    { id: 46, name: "Guliakhali", district: "Chattogram", category: "Coastal", rating: 4.6, price: 1200, highlights: ["Green", "Beach", "Grass"], image: "https://images.unsplash.com/photo-1590001158193-7ae8a33637e9?w=600", description: "A unique 'green beach' where natural grass patterns and mangrove roots create a landscape unlike any other coastline." },
+    { id: 47, name: "Patenga", district: "Chattogram", category: "Coastal", rating: 4.3, price: 1000, highlights: ["City", "Ships", "Food"], image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600", description: "The bustling city beach of Chittagong, popular for watching giant cargo ships and enjoying spicy street snacks." },
+    { id: 48, name: "Malnicherra", district: "Sylhet", category: "Nature", rating: 4.6, price: 800, highlights: ["Oldest", "Tea", "Walk"], image: "https://images.unsplash.com/photo-1596402184320-417d7178b2cd?w=600", description: "The oldest tea garden in South Asia, established in 1849, offering a lush green escape on the city outskirts." },
+    { id: 49, name: "Jadipai Falls", district: "Bandarban", category: "Adventure", rating: 4.9, price: 8500, highlights: ["Wild", "Wide", "Hard Trek"], image: "https://images.unsplash.com/photo-1433086466391-f7ad96850849?w=600", description: "One of the widest and most majestic waterfalls in Bangladesh, hidden deep within the hills near the Keokradong summit." },
+    { id: 50, name: "Sangu River", district: "Bandarban", category: "Adventure", rating: 5.0, price: 5000, highlights: ["Gorge", "Boat", "Epic"], image: "https://images.unsplash.com/photo-1540611025311-01df3cef54b5?w=600", description: "Arguably the most beautiful river route in the country, cutting through high stone walls and deep jungle gorges." },
+    { id: 51, name: "Hilsa Market", district: "Chandpur", category: "Nature", rating: 4.6, price: 1500, highlights: ["River", "Fish", "Padma"], image: "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=600", description: "The 'Hilsa Capital.' Visit where the Meghna and Padma rivers meet to experience the bustling culture of the national fish." },
+    { id: 52, name: "Patharghata", district: "Barguna", category: "Nature", rating: 4.5, price: 3200, highlights: ["Deer", "Forest", "Fish"], image: "https://images.unsplash.com/photo-1590001158193-7ae8a33637e9?w=600", description: "Where the forest meets the sea. You can often see deer wandering near the coastline in this quiet delta region." },
+    { id: 53, name: "Khadimnagar", district: "Sylhet", category: "Nature", rating: 4.4, price: 1200, highlights: ["Hiking", "Canopy", "Birds"], image: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600", description: "A dense national park offering canopy trails and a great diversity of flora and fauna just north of Sylhet city." },
+    { id: 54, name: "Varendra Museum", district: "Rajshahi", category: "Heritage", rating: 4.8, price: 400, highlights: ["Stone", "Statues", "Oldest"], image: "https://images.unsplash.com/photo-1566121316354-f064f268f270?w=600", description: "The oldest museum in the country, housing priceless stone artifacts and statues from ancient Buddhist and Hindu dynasties." },
+    { id: 55, name: "Somapura Mahavihara", district: "Naogaon", category: "Heritage", rating: 4.9, price: 1500, highlights: ["World Heritage", "Brick", "Grand"], image: "https://images.unsplash.com/photo-1589308454676-47665792f397?w=600", description: "A monumental achievement of architecture. The central shrine at Paharpur is a UNESCO landmark of world history." }
 ];
 
-// Exporting the data so it can be accessed by app.js
-// If using plain <script> tags, this will be in the global scope.
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = destinations;
-}
+// Exporting the data for use in other files
+// Note: In a browser environment using <script> tags, 
+// 'destinations' becomes a global variable.
